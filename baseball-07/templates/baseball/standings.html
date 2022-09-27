@@ -1,0 +1,38 @@
+{% extends './layout.html' %}
+{% block content %}
+<h1>
+    <center>League Standings</center>
+</h1>
+<p>
+<center>
+    Here is the day in history...
+    {{ date }}
+</center>
+</p>
+<table>
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Logo</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>PCT</th>
+            <th>GB</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in ext_standings %}
+        <tr>
+            <td>{{ s.0 }}</td>
+            <td>{{ s.1 }}</td>
+            <td><img src="{{ s.2 }}"></td>
+            <td>{{ s.3 }}</td>
+            <td>{{ s.4 }}</td>
+            <td>{{ s.5 }}</td>
+            <td>{{ s.6 }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>One Team Info</title>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+        <link rel="stylesheet" href="extras.css">
+        <link href="{% static 'baseball/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1>Baseball Standings</h1>
+            <nav>
+                <ul>
+                    <li><a class= "active" href="{% url 'baseball:index' %}">Home</a></li>
+                    <li><a href="{% url 'baseball:logos' %}">Team Overview</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <b>Code: </b> {{code}}
+        <br>
+        <b>Name:</b> {{ team_name }}
+        <br>
+        <b>Logo:</b> <br> <img src="{{ team_logo_url }}">
+        <br>
+        Season began on {{ opening_day }} and ended on {{ last_day }}. 
+        </main>
+        
+    </body>
+    <footer>
+        <p>
+            Made by: Tuva Granøien <br> CSCE A490 <br> September 2022
+        </p>
+    </footer>
+</html>

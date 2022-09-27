@@ -1,0 +1,74 @@
+<!doctype html>
+<p lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Play Ball!</title>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+        <style>
+             h1{
+                text-align: center;
+            }
+            input[type="submit"] {
+                background-color: tomato;
+            }
+            input[type="submit"]:hover{
+                background-color: darkred;
+            }
+        </style>
+    </head>
+    <form action="{% url 'baseball:standings' %}" method="get">
+            <label for="dateid">Date to view:</label>
+            <input type="date" id="dateid" name="date" value="{{ date }}">
+        <label for="league" >League to view:</label>
+        <select id="league" name="league">
+            <option value="AL">American League</option>
+            <option value="NL">National League</option>
+        </select>
+            <input type="submit" class="free">
+        </form>
+    <p></p>
+    <body>
+        <h1>{% if league == "AL" %} American League
+            {% elif league == "NL" %}National League
+            {% endif %}<br>Game Record of
+            <u>{{ date }}</u>
+            {% if end %}
+            (Final Standings)
+            {% endif %}</h1>
+        <main>
+        <table>
+        <thead>
+          <tr>
+            <th>Team Name</th>
+            <th>Team Logo</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>GB</th>
+
+          </tr>
+        </thead>
+        <tbody>
+                    {% for s in standings %}
+                    <tr>
+                        <td>{{ s.0 }} ({{ s.1 }})</td>
+                        <td><a href={{ s.2 }}><img src="{{ s.2 }}"></a></td>
+                        <td>{{ s.3 }}</td>
+                        <td>{{ s.4 }}</td>
+                        <td>{{ s.5 }}</td>
+                    </tr>
+                    {% endfor %}
+                    <caption style="caption-side:bottom">
+                        <p>League Rankings</p>
+                    </caption>
+                </tbody>
+        </table>
+        </main>
+    <p>Back to search page
+    <form action="{% url 'baseball:index' %}" method="get"><input type="submit" value="home" class="free" style="display: inline"></form>
+    <footer>
+      <p>Credit to Keith Averre Jr for being an awesome guy aka me.</p>
+    </footer>
+
+
+    </body>
+</html>

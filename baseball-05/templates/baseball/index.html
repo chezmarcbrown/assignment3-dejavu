@@ -1,0 +1,24 @@
+{% extends "baseball/layout.html" %}  
+
+{% block body %}
+        <p>Baseball is all about the standings.
+            What day and what league woud you like to know about in the 1967 season.</p>
+
+        <form action="{% url 'baseball:index' %}" method="get" id="dateform">
+            <label for="dateid">Date to view:{% if errormsg %} {{errormsg}} {% endif %}</label>
+                <input type="date" id="dateid" name="date" value="{{ datestr }}" min="1967-04-01" max="1967-10-31">
+                <input type="submit">
+            <label for="cars">Choose a League:</label>
+                <select id="leagues" name="league" form="dateform">            
+                    <option value="AL">American League</option>
+                    <option value="NL">National League</option>
+                </select>
+        </form>
+    
+        {% if standings %}    
+        <hr style="width: 100%"; color="gray" >
+            {% include "baseball/standings.html" %}    
+        
+    
+    {% endif %}
+{% endblock %} 

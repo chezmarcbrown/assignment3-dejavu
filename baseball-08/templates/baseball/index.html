@@ -1,0 +1,43 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Play Ball!</title>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+        <link rel="stylesheet" href="extras.css">
+        <link href="{% static 'baseball/styles.css' %}" rel="stylesheet">
+    </head>
+    <header>
+        <h1>Baseball Standings</h1>
+        <nav>
+            <ul>
+                <li><a class= "active" href="{% url 'baseball:index' %}">Home</a></li>
+                <li><a href="{% url 'baseball:logos' %}">Team Overview</a></li>
+            </ul>
+        </nav>
+    </header>
+    <body>
+        <p>Baseball is all about the standings.
+            What day and what league woud you like to know about in the 1967 season.</p>
+            {% if errormsg  %}
+            <p style="color:red">{{ errormsg }}</p>
+            {% endif %}
+
+        <form action="{% url 'baseball:standings' %}" method="get">
+            <label for="dateid">Date to view:</label>
+            <input type="date" id="dateid" name="date" value="1967-04-10" min="1967-04-01" max="1967-10-31">
+            <label for="league">Choose a league:</label>
+            <select name="league" id="league">
+              <option value="NL">National League</option>
+              <option value="AL">American League</option>
+            <input type="submit">
+        </form>
+
+    </body>
+    <footer>
+        <p>
+            Made by: Tuva Granøien <br> CSCE A490 <br> September 2022
+        </p>
+    </footer>
+</html>

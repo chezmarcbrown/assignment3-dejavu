@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <link rel="stylesheet" href="{% static 'baseball/styles.css' %}" />
+    <meta charset="utf-8" />
+    <title>Play Ball!</title>
+  </head>
+  <body>
+    <header>
+      <h1>Baseball Rankings</h1>
+      <p>
+        Baseball is all about the standings. What day and what league woud you
+        like to know about in the 1967 season.
+      </p>
+
+      <form action="{% url 'baseball:standings' %}" method="get">
+        {% if datemsg %}
+        <p style="color: red"><b>{{ datemsg }}</b></p>
+        {% endif %}
+        <label for="dateid">Date to view:</label>
+        <input
+          type="date"
+          id="dateid"
+          name="date"
+          min="1967-04-01"
+          max="1967-10-31"
+          value="1967-04-10"
+        />
+        <label for="regionid">Choose which league:</label>
+        <select id="regionid" name="region">
+          <option value="null">...</option>
+          <option value="NL" selected>NL</option>
+          <option value="AL" selected>AL</option>
+        </select>
+        <input type="submit" />
+      </form>
+    </header>
+  </body>
+</html>

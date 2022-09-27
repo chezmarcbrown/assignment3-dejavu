@@ -1,0 +1,31 @@
+{% extends './layout.html' %}
+{% block content %}
+<div style="margin-left:auto;margin-right:auto">
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Logo</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>PCT</th>
+                <th>GB</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in logos %}
+            <tr>
+                <td>{{ r.0 }}</td>
+                <td>{{ r.1 }}</td>
+                <td><img src="{{ r.2 }}"></td>
+                <td>{{ r.3 }}</td>
+                <td>{{ r.4 }}</td>
+                <td>{{ r.5 }}</td>
+                <td>{{ r.6 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

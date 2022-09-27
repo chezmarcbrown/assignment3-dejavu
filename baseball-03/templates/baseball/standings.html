@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+        <link rel="stylesheet" href="{% static 'baseball/mystyles.css' %}">
+        <title>Play Ball!</title>
+    </head>
+    <body>
+        <p>Here is the day in history...
+        {{ date }} 
+        </p>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                      <th>Team</th>
+                      <th>Wins</th>
+                      <th>Losses</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for s in standings %}
+                        <tr>
+                            <th>
+                                {{s.0}}
+                            </th>
+                            <td>
+                                {{s.1}}
+                            </td>
+                            <td>
+                                {{s.2}}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+            </table>
+        </main>
+    </body>
+    <footer>
+        <p>©Copyright 2022 by Joshua Gatpandan. All rights reserved.</p>
+    </footer>
+</html>

@@ -1,0 +1,68 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Play Ball!</title>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+        <link rel="stylesheet" href="extras.css">
+        <link href="{% static 'baseball/styles.css' %}" rel="stylesheet">
+    </head>
+    <header>
+        <h1>Baseball Standings</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'baseball:index' %}">Home</a></li>
+                <li><a href="{% url 'baseball:logos' %}">Team Overview</a></li>
+            </ul> 
+        </nav>
+    </header>
+    <body>
+
+        <main>
+       
+        {% if date_str > "1967-10-30" %}
+            <p>Final Standings in the 
+                {% if league == "AL" %}
+                American League
+                {% else %}
+                National League
+                {% endif %}
+            </p>
+            {% else %}
+            <p>Here is the day in history... <br>
+                <b>Date: </b>
+                {{date}} <br>
+                <b>League: </b>
+                {% if league == "AL" %}
+                American League
+                {% else %}
+                National League
+                {% endif %}
+            </p>
+            {% endif %}
+            <table >
+            <tr>
+                <th>Team Name</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>GB</th>
+            </tr>
+            {% for s in standings %}
+                <tr>
+                    <td> {{s.code}}</td>
+                    <td> {{s.wins}} </td>
+                    <td> {{s.losses}} </td>
+                    <td> {{s.gb}} </td>
+                </tr>
+                {% endfor %}
+        </table>
+        </p>
+    </main>
+    </body>
+    <footer>
+        <p>
+            Made by: Tuva Granøien <br> CSCE A490 <br> September 2022
+        </p>
+    </footer>
+</html>

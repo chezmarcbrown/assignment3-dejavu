@@ -1,0 +1,57 @@
+{% extends "baseball/layout.html" %}
+
+
+{% block body %}
+<header>
+    <nav>
+      <ul>
+      <li><a href="{% url 'baseball:index' %}">Home</a></li>
+      </ul>
+    </nav>
+    <h1>The 1967 Season</h1>
+    {% if league == "AL" %}
+    <h2>American League</h2>
+    {% else %}
+    <h2>National League</h2>
+    {% endif %}
+</header>
+        {% if test_date > '19671001' %}
+        <p>Final Standings<br>
+            {{ date }}
+        </p>
+        {% else %}
+        <p>Here is the day in history...<br>
+            {{ date }}
+        </p>
+        {% endif %}
+        <div style="margin-left:auto;margin-right:auto">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Logo</th>
+                        <th>Wins</th>
+                        <th>Losses</th>
+                        <th>PCT</th>
+                        <th>GB</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in extended_standings %}
+                    <tr>
+                        <td>{{ r.0 }}</td>
+                        <td>{{ r.1 }}</td>
+                        <td><img src="{{ r.2 }}"></td>
+                        <td>{{ r.3 }}</td>
+                        <td>{{ r.4 }}</td>
+                        <td>{{ r.5 }}</td>
+                        <td>{{ r.6 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        
+{% endblock %}

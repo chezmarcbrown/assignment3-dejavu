@@ -1,0 +1,26 @@
+{% extends "baseball/template.html" %}
+
+{% block title %}Play Ball!{% endblock %}
+
+{% block body %}
+<h1>Baseball Standings by Date</h1>
+<img style="width: 200px; margin: auto;" src="https://i.ebayimg.com/images/g/gMYAAOSwy6ddqMWl/s-l1600.jpg">
+<p>Baseball is all about the standings.
+    What day and what league woud you like to know about in the 1967 season.</p>
+
+<form action="{% url 'baseball:standings' %}" method="get">
+    <label for="dateid">Choose a date:</label>
+    <input type="date" id="dateid" name="date" value="1967-04-10" min="1967-04-10" max="1967-10-01"><br>
+    
+    <p>Choose a league:</p>
+    <input type="radio" id="NL" name="league" value="NL" required>
+    <label style="display: inline;" for="NL">National League</label>
+    
+    <input type="radio" id="AL" name="league" value="AL" >
+    <label style="display: inline;" AL">American League</label><br>
+    <input type="submit">
+</form>
+
+
+{% endblock %}
+

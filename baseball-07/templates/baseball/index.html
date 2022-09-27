@@ -1,0 +1,27 @@
+{% extends './layout.html' %}
+
+{% block content %}
+<center>
+    <p>
+        This is the homepage for the different leagues within Major League Baseball (MLB) for the season of 1967.
+    </p>
+    <p>Baseball is all about the standings.
+        What day and what league woud you like to know about in the 1967 season.
+    </p>
+
+    <form action="{% url 'baseball:standings' %}" method="get">
+        <label for="dateid">Date to view:</label>
+        <input type="date" id="dateid" name="date" value = "1967-04-10" min="1967-04-01" max="1967-10-31">
+
+        <label for="league">Choose a league:</label>
+        <select id="league" name="league">
+        <option value="AL">American League</option>
+        <option value="NL">National League</option>
+        </select>
+
+        <input type="submit">
+    </form>
+
+</center>
+
+{% endblock %}

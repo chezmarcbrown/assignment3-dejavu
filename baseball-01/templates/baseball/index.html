@@ -1,0 +1,36 @@
+{% extends "baseball/layout.html" %}
+
+{% block body %}
+
+    <header>
+        <nav>
+
+        </nav>
+        <h1>The 1967 Season</h1>
+        <a class="logo" href="https://www.mlb.com/">
+            <img src="https://www.mlbstatic.com/team-logos/league-on-dark/1.svg" alt="MLB Logo">
+        </a>
+    </header>
+        <p>Baseball is all about the standings.
+            What day and which league woud you like to know about in the 1967 season.</p>
+
+    <div class="form-center"> 
+        <form action="{% url 'baseball:standings' %}" method="get">
+            <!-- date selector -->
+            <label for="dateid">Date to view:</label>
+            <input type="date" value="1967-04-10"id="dateid" name="date" min="1967-04-10" max="1967-12-31">
+            
+            <!-- dropdown box -->
+            <label for="league">Choose a league:</label>
+            <select id="league" name="league">
+            <option value="AL">American League</option>
+            <option value="NL">National League</option>
+            </select>
+        
+            <input type="submit">
+
+        </form>
+
+    </div>
+
+{% endblock %}

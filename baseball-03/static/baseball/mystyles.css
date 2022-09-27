@@ -1,0 +1,26 @@
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+}
+    thead th, tfoot th {
+    color: white;
+    background-color: rgb(89, 89, 232);
+}
+th {
+    border: 1px solid black;
+    padding: 10px 10px 15px 10px;}
+td {
+    border: 1px dashed red;
+    padding: 10px;
+}
+tbody th {
+    background-color: white;
+}
+tr:nth-child(even) {
+    background-color: #eeeeee;
+}
+tr:hover {
+    background-color: #bbbbbb;
+}

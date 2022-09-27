@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <link rel="stylesheet" href="{% static 'baseball/styles.css' %}" />
+    <meta charset="utf-8" />
+    <title>Play Ball!</title>
+  </head>
+  <body>
+    <header>
+      <h1>Baseball Rankings</h1>
+      <p>
+        Baseball is all about the standings. What day and what league woud you
+        like to know about in the 1967 season?
+      </p>
+
+      <form action="{% url 'baseball:standings' %}" method="get">
+        <label for="dateid">Date to view:</label>
+        <input type="date" id="dateid" name="date" min="1967-04-01" max="1967-10-31" value="{{datestr}}"
+        />
+        {% if errormsg %}
+        <p style="color: red"><b>{{ errormsg }}</b></p>
+        {% endif %}
+        <label for="regionid">Choose which league:</label>
+        <select id="regionid" name="region">
+          <option value="null">...</option>
+          <option value="NL" {% if leaguein == "NL" %}selected{%endif%} >NL</option>
+          <option value="AL" {% if leaguein == "AL" %}selected{%endif%}>AL</option>
+        </select>
+        <input type="submit" />
+      </form>
+    </header>
+    <main>
+      {% if not errormsg %}
+      {% if post_szn %}
+        <h3>{{ post_szn }} ({{ date }})</h3>
+      {% endif %}
+      {% if not post_szn %}
+        <h3>Here is the day in history... {{ date }}</h3>
+      {% endif %}
+      <div style="margin-left: auto; margin-right: auto">
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Team</th>
+              <th>Logo</th>
+              <th>Wins</th>
+              <th>Losses</th>
+              <th>Winning Percentage</th>
+              <th>Games Behind</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for s in standings %}
+            <tr>
+              <td colspan="2">{{ s.1 }}</td>
+              <td><img src="{{ s.2 }}" /></td>
+              <td>{{ s.3 }}</td>
+              <td>{{ s.4 }}</td>
+              <td>{% widthratio s.5 1 100 %}%</td>
+              <td>{{ s.6 }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+    </main>
+  </body>
+</html>

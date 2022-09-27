@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+        <title>Play Ball!</title>
+        <style>
+            legend {
+                background-color: #000;
+                color: #fff;
+                padding: 3px 6px;
+            }
+            td, th {
+               text-align: center;
+               width:1000px;
+            }
+            p {
+               text-align: center;
+            }
+            .active {
+               background-color: #04AA6D;
+               color: white;
+            }
+
+            .form-center {
+               display:flex;
+               justify-content: center;
+            }
+            
+            a > img {
+               width:100px;
+            }
+        </style>
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+    </body>
+    <footer><p>Copyright 2022 by UAA 490.</p></footer>
+</html>

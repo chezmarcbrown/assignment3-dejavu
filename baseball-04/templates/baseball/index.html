@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Play Ball!</title>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+        <style>
+             h1{
+                text-align: center;
+            }
+            input[type="submit"] {
+                background-color: tomato;
+            }
+            input[type="submit"]:hover{
+                background-color: darkred;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Baseball is all about the standings.<br><br>
+            What day and what league would you like to know about in the 1967 season.</h3>
+
+        <p>
+            {% if errorMsg %}
+            <h2>{{ errorMsg }}</h2>
+            {%  endif %}
+        </p>
+
+        <form action="{% url 'baseball:standings' %}" method="get" style="display: inline;">
+            <label for="dateid">Date to view:</label>
+            <input type="date" id="dateid" name="date" value="1967-04-10">
+        <label for="league" >League to view:</label>
+        <select id="league" name="league">
+            <option value="AL">American League</option>
+            <option value="NL">National League</option>
+        </select>
+            <input type="submit">
+        </form>
+
+    </body>
+</html>
